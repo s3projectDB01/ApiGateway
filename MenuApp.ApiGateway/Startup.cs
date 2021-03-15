@@ -16,6 +16,8 @@ namespace MenuApp.ApiGateway
     public class Startup
     {
         private IConfiguration Configuration { get; }
+        
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
         public Startup(IConfiguration configuration)
         {
@@ -25,6 +27,15 @@ namespace MenuApp.ApiGateway
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy(MyAllowSpecificOrigins,
+                    builder =>
+                    {
+                        builder.WithOrigins(Configuration.GetValue<string>("clientURL"));
+                    });
+            });
+            
             services.AddOcelot(Configuration);
         }
 
@@ -37,6 +48,7 @@ namespace MenuApp.ApiGateway
             }
 
             app.UseRouting();
+            app.UseCors(MyAllowSpecificOrigins); 
 
             app.UseEndpoints(endpoints =>
             {
