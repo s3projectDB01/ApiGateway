@@ -1,15 +1,27 @@
 {
   "Routes": [
     {
-      "DownstreamPathTemplate": "/WeatherForecast",
-      "DownstreamScheme": "http",
+      "DownstreamPathTemplate": "/",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "orderservice",
           "Port": 80
         }
       ],
-      "UpstreamPathTemplate": "/WeatherForecast",
+      "UpstreamPathTemplate": "/order",
+      "UpstreamHttpMethod": [ "Get", "Post" ]
+    },
+    {
+      "DownstreamPathTemplate": "/",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "menuservice",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/menu",
       "UpstreamHttpMethod": [ "Get" ]
     }
   ],
