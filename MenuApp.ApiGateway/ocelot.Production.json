@@ -10,10 +10,10 @@
         }
       ],
       "UpstreamPathTemplate": "/order/{url}",
-      "UpstreamHttpMethod": [ "Get", "Post" ]
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ]
     },
     {
-      "DownstreamPathTemplate": "/",
+      "DownstreamPathTemplate": "/{url}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -21,8 +21,8 @@
           "Port": 80
         }
       ],
-      "UpstreamPathTemplate": "/menu",
-      "UpstreamHttpMethod": [ "Get" ]
+      "UpstreamPathTemplate": "/menu/{url}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ]
     }
   ],
   "GlobalConfiguration": {

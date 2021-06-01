@@ -10,19 +10,19 @@
         }
       ],
       "UpstreamPathTemplate": "/order/{url}",
-      "UpstreamHttpMethod": [ "Get", "Post" ]
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ]
     },
     {
-      "DownstreamPathTemplate": "/",
+      "DownstreamPathTemplate": "/{url}",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "menuservice",
-          "Port": 80
+          "Host": "localhost",
+          "Port": 7001
         }
       ],
-      "UpstreamPathTemplate": "/menu",
-      "UpstreamHttpMethod": [ "Get" ]
+      "UpstreamPathTemplate": "/menu/{url}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ]
     }
   ],
   "GlobalConfiguration": {
