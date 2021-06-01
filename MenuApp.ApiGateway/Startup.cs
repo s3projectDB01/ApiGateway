@@ -32,9 +32,17 @@ namespace MenuApp.ApiGateway
                 options.AddPolicy(MyAllowSpecificOrigins,
                     builder =>
                     {
-                        builder.WithOrigins(Configuration.GetValue<string>("clientURL"));
+                        builder
+                            .SetIsOriginAllowedToAllowWildcardSubdomains()
+                            .WithOrigins("https://*.tycho.dev", "https://localhost:3000")
+                            .AllowAnyMethod()
+                            .AllowCredentials()
+                            .AllowAnyHeader()
+                            .Build();
                     });
             });
+            
+            
             
             services.AddOcelot(Configuration);
         }
