@@ -33,8 +33,12 @@ namespace MenuApp.ApiGateway
                     builder =>
                     {
                         builder
-                            .WithOrigins(Configuration.GetValue<string>("clientURL"))
-                            .AllowAnyHeader();
+                            .SetIsOriginAllowedToAllowWildcardSubdomains()
+                            .WithOrigins("https://*.tycho.dev", "https://localhost:3000")
+                            .AllowAnyMethod()
+                            .AllowCredentials()
+                            .AllowAnyHeader()
+                            .Build();
                     });
             });
             

@@ -1,28 +1,28 @@
 {
   "Routes": [
     {
-      "DownstreamPathTemplate": "/",
-      "DownstreamScheme": "https",
+      "DownstreamPathTemplate": "/{url}",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "orderservice",
           "Port": 80
         }
       ],
-      "UpstreamPathTemplate": "/order",
-      "UpstreamHttpMethod": [ "Get", "Post" ]
+      "UpstreamPathTemplate": "/order/{url}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ]
     },
     {
-      "DownstreamPathTemplate": "/",
-      "DownstreamScheme": "https",
+      "DownstreamPathTemplate": "/{url}",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "menuservice",
           "Port": 80
         }
       ],
-      "UpstreamPathTemplate": "/menu",
-      "UpstreamHttpMethod": [ "Get" ]
+      "UpstreamPathTemplate": "/menu/{url}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ]
     }
   ],
   "GlobalConfiguration": {
