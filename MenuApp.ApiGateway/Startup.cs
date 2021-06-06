@@ -32,7 +32,9 @@ namespace MenuApp.ApiGateway
                 options.AddPolicy(MyAllowSpecificOrigins,
                     builder =>
                     {
-                        builder.WithOrigins(Configuration.GetValue<string>("clientURL"));
+                        builder
+                            .WithOrigins(Configuration.GetValue<string>("clientURL"))
+                            .AllowAnyHeader();
                     });
             });
             
