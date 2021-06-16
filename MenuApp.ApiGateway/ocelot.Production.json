@@ -13,7 +13,7 @@
       "UpstreamHttpMethod": [ "Get", "Post", "Put" ]
     },
     {
-      "DownstreamPathTemplate": "/orderHub",
+      "DownstreamPathTemplate": "/{catchAll}",
       "DownstreamScheme": "ws",
       "DownstreamHostAndPorts": [
         {
@@ -21,7 +21,7 @@
           "Port": 80
         }
       ],
-      "UpstreamPathTemplate": "/orderHub",
+      "UpstreamPathTemplate": "/orderHub/{catchAll}",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ]
     },
     {
