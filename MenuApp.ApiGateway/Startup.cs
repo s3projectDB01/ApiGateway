@@ -33,10 +33,8 @@ namespace MenuApp.ApiGateway
                     builder =>
                     {
                         builder
-                            .SetIsOriginAllowedToAllowWildcardSubdomains()
                             .AllowAnyOrigin()
                             .AllowAnyMethod()
-                            .AllowCredentials()
                             .AllowAnyHeader()
                             .Build();
                     });
