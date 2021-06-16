@@ -14,7 +14,7 @@
     },
     {
       "DownstreamPathTemplate": "/orderHub/{catchAll}",
-      "DownstreamScheme": "ws",
+      "DownstreamScheme": "wss",
       "DownstreamHostAndPorts": [
         {
           "Host": "orderservice",
