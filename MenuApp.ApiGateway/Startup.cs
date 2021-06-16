@@ -61,6 +61,7 @@ namespace MenuApp.ApiGateway
                 endpoints.MapGet("/", async context => { await context.Response.WriteAsync("Hello World!"); });
             });
 
+            app.UseWebSockets();
             app.UseOcelot().Wait();
         }
     }
