@@ -34,7 +34,7 @@ namespace MenuApp.ApiGateway
                     {
                         builder
                             .SetIsOriginAllowedToAllowWildcardSubdomains()
-                            .WithOrigins("https://*.tycho.dev/", "https://*.tycho.dev", "http://localhost:3000", "http://localhost:3000/")
+                            .WithOrigins("https://*.tycho.dev/", "https://*.tycho.dev", "http://localhost:3000", "http://localhost:3000/", "https://kitchen.tycho.dev/", "https://kitchen.tycho.dev")
                             .AllowAnyMethod()
                             .AllowCredentials()
                             .AllowAnyHeader()
