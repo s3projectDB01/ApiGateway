@@ -45,7 +45,7 @@ namespace MenuApp.ApiGateway
                     .AllowAnyMethod()
                     .AllowCredentials()
                     .SetIsOriginAllowedToAllowWildcardSubdomains()
-                    .WithOrigins("http://localhost:3000", "https://*.tycho.dev");
+                    .WithOrigins("http://localhost:3000", "https://*.tycho.dev", "https://kitchen.tycho.dev", "https://menu.tycho.dev", "https://waiter.tycho.dev");
             });
             
             var webSocketOptions = new WebSocketOptions()
