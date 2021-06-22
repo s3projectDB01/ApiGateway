@@ -27,21 +27,6 @@ namespace MenuApp.ApiGateway
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors(options =>
-            {
-                options.AddPolicy(MyAllowSpecificOrigins,
-                    builder =>
-                    {
-                        builder
-                            .SetIsOriginAllowedToAllowWildcardSubdomains()
-                            .WithOrigins("https://*.tycho.dev/", "https://*.tycho.dev", "http://localhost:3000", "http://localhost:3000/", "https://kitchen.tycho.dev/", "https://kitchen.tycho.dev")
-                            .AllowAnyMethod()
-                            .AllowCredentials()
-                            .AllowAnyHeader()
-                            .Build();
-                    });
-            });
-            
             services.AddOcelot(Configuration);
         }
 
@@ -53,15 +38,31 @@ namespace MenuApp.ApiGateway
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors(options =>
+            {
+                options.AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowCredentials()
+                    .SetIsOriginAllowedToAllowWildcardSubdomains()
+                    .WithOrigins("http://localhost:3000", "https://*.tycho.dev");
+            });
+            
+            var webSocketOptions = new WebSocketOptions()
+            {
+                KeepAliveInterval = TimeSpan.FromSeconds(120),
+            };
+            webSocketOptions.AllowedOrigins.Add("http://localhost:3000");
+            webSocketOptions.AllowedOrigins.Add("https://kitchen.tycho.dev");
+
+            app.UseWebSockets(webSocketOptions);
+            
             app.UseRouting();
-            app.UseCors(MyAllowSpecificOrigins); 
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGet("/", async context => { await context.Response.WriteAsync("Hello World!"); });
             });
-
-            app.UseWebSockets();
+            
             app.UseOcelot().Wait();
         }
     }
