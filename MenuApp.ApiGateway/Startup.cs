@@ -41,11 +41,11 @@ namespace MenuApp.ApiGateway
 
             app.UseCors(options =>
             {
-                options.AllowAnyHeader()
+                options.SetIsOriginAllowedToAllowWildcardSubdomains()
+                    .WithOrigins("http://localhost:3000", "https://kitchen.tycho.dev", "https://menu.tycho.dev", "https://waiter.tycho.dev")
+                    .AllowAnyHeader()
                     .AllowAnyMethod()
-                    .AllowCredentials()
-                    .SetIsOriginAllowedToAllowWildcardSubdomains()
-                    .WithOrigins("http://localhost:3000", "https://*.tycho.dev", "https://kitchen.tycho.dev", "https://menu.tycho.dev", "https://waiter.tycho.dev");
+                    .AllowCredentials();
             });
             
             var webSocketOptions = new WebSocketOptions()
