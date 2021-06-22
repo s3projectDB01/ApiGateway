@@ -41,8 +41,7 @@ namespace MenuApp.ApiGateway
 
             app.UseCors(options =>
             {
-                options.SetIsOriginAllowedToAllowWildcardSubdomains()
-                    .WithOrigins("http://localhost:3000", "https://kitchen.tycho.dev", "https://menu.tycho.dev", "https://waiter.tycho.dev")
+                options.WithOrigins("http://localhost:3000", "https://kitchen.tycho.dev", "https://menu.tycho.dev", "https://waiter.tycho.dev")
                     .AllowAnyHeader()
                     .AllowAnyMethod()
                     .AllowCredentials();
